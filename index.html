@@ -1,0 +1,138 @@
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interactive Card</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="top">
+    <div class="bacOverlay">
+      <img id="imgBack" src="bg-card-back.png" alt="Back of card">
+      <p id="backCVV">000</p>
+      <div class="image-container">
+        <img id="imgFront" src="bg-card-front.png" alt="Front of card">
+        <div class="svg">
+          <svg width="75" height="47" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="23.478" cy="23.5" rx="23.478" ry="23.5" fill="#fff"/>
+            <path d="M83.5 23.5c0 5.565-4.507 10.075-10.065 10.075-5.559 0-10.065-4.51-10.065-10.075 0-5.565 4.506-10.075 10.065-10.075 5.558 0 10.065 4.51 10.065 10.075Z" stroke="#fff"/>
+          </svg>
+        </div>
+        <div class="text-overlay">0000 0000 0000 0000</div>
+        <div class="name">Ndubuisi Righteous</div>
+        <div class="expDate">00/00</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form">
+    <label for="Cardholder">Cardholder Name:</label>
+    <input type="text" name="Cardholder" id="Cardholder" placeholder="e.g Ndubuisi Righteous">
+    <small class="error" id="nameError"></small>
+
+    <label for="Cardnumber">Card Number:</label>
+    <input type="text" name="Cardnumber" id="Cardnumber" placeholder="e.g 0000 0000 0000 0000" maxlength="19">
+    <small class="error" id="cardNumberError"></small>
+
+<label for="cardDate">Exp. Date (MM/YY)</label>
+<div class="card-expiry">
+  <input type="number" name="cardDateMM" id="cardDateMM" placeholder="MM" oninput="this.value = this.value.slice(0, 2)">
+  <input type="number" name="cardDateYY" id="cardDateYY" placeholder="YY" oninput="this.value = this.value.slice(0, 2)">
+  <label for="CVC" id="CVC2">CVC:</label>
+  <input type="number" name="CVC" id="CVC" oninput="this.value = this.value.slice(0, 3)">
+</div>
+<small class="error" id="expDateError"></small>
+<small class="error" id="cvcError"></small>
+  <button id="Confirm">Confirm</button>
+
+  <script>
+    // Get input fields
+    const cardInput = document.getElementById('Cardnumber');
+    const nameInput = document.getElementById('Cardholder');
+    const expMMInput = document.getElementById('cardDateMM');
+    const expYYInput = document.getElementById('cardDateYY');
+    const cvcInput = document.getElementById('CVC');
+
+    // Get display elements on the card
+    const cardNumberDisplay = document.querySelector('.text-overlay');
+    const nameDisplay = document.querySelector('.name');
+    const expDateDisplay = document.querySelector('.expDate');
+    const cvcDisplay = document.getElementById('backCVV');
+
+    // Error message elements
+    const nameError = document.getElementById('nameError');
+    const cardNumberError = document.getElementById('cardNumberError');
+    const expDateError = document.getElementById('expDateError');
+    const cvcError = document.getElementById('cvcError');
+
+    // Confirm button
+    const confirmButton = document.getElementById('Confirm');
+
+    // Validation function
+    function validateForm() {
+      let isValid = true;
+
+      // Reset error messages
+      nameError.textContent = '';
+      cardNumberError.textContent = '';
+      expDateError.textContent = '';
+      cvcError.textContent = '';
+
+      // Cardholder name validation
+      if (nameInput.value.trim() === '') {
+        nameError.textContent = "This field can't be empty.";
+        isValid = false;
+      }
+
+      // Card number validation
+      let cardValue = cardInput.value.replace(/\s+/g, '');
+      if (cardValue.length < 16) {
+        cardNumberError.textContent = "The card number is invalid.";
+        isValid = false;
+      } else if (cardValue.length === 0) {
+        cardNumberError.textContent = "This field can't be empty.";
+        isValid = false;
+      }
+
+      // Expiry date validation
+      if (expMMInput.value === '' || expYYInput.value === '') {
+        expDateError.textContent = "This field can't be empty.";
+        isValid = false;
+      }
+
+      // CVC validation
+      if (cvcInput.value === '') {
+        cvcError.textContent = "This field can't be empty.";
+        isValid = false;
+      }
+
+      return isValid;
+    }
+
+    // Add click event to "Confirm" button
+    confirmButton.addEventListener('click', function () {
+      if (validateForm()) {
+        // Card number formatting (group by 4 digits)
+        let inputValue = cardInput.value.replace(/\s+/g, '');
+        if (inputValue.length > 0) {
+          inputValue = inputValue.match(/.{1,4}/g).join(' ');
+        }
+        cardNumberDisplay.textContent = inputValue || '0000 0000 0000 0000';
+
+        // Cardholder name
+        nameDisplay.textContent = nameInput.value || 'Ndubuisi Righteous';
+
+        // Expiry date
+        const mm = expMMInput.value || '00';
+        const yy = expYYInput.value || '00';
+        expDateDisplay.textContent = `${mm}/${yy}`;
+
+        // CVC code
+        cvcDisplay.textContent = cvcInput.value || '000';
+      }
+    });
+  </script>
+</body>
+</html>

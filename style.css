@@ -1,0 +1,172 @@
+@font-face {
+  font-family: myFont;
+  src: url("SpaceGrotesk-VariableFont_wght.ttf");
+}
+@font-face {
+  font-family: myFont1;
+  src: url("SpaceGrotesk-Bold.ttf");
+}
+@font-face {
+  font-family: myFont2;
+  src: url("SpaceGrotesk-Light.ttf");
+}
+@font-face {
+  font-family: myFont3;
+  src: url("SpaceGrotesk-Medium.ttf");
+}
+@font-face {
+  font-family: myFont4;
+  src: url("SpaceGrotesk-Regular.ttf");
+}
+@font-face {
+  font-family: myFont5;
+  src: url("SpaceGrotesk-SemiBold.ttf");
+}
+
+body {
+  font-family: myFont, sans-serif;
+}
+
+.top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  background: linear-gradient(hsl(249, 99%, 64%) , hsl(278, 94%, 30%));
+}
+
+.image-container {
+  position: relative;
+  width: 80%;
+  max-width: 600px;
+  color: white;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+}
+
+#imgBack {
+  position: absolute;
+  top: 0;
+  right: 1em;
+  width: 75%;
+}
+
+#backCVV {
+  position: absolute;
+  right: 3em;
+  top: 3em;
+}
+
+#imgFront {
+  position: relative;
+  width: 100%;
+  top:-1em;
+}
+
+.text-overlay {
+  position: absolute;
+  top: 2.5em;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: white;
+  font-family: myFont;
+  width:90%;
+  padding-left: 1rem;
+}
+
+.name, .expDate {
+  position: absolute;
+  font-size: 0.9rem;
+}
+
+.name {
+  left: 1em;
+  bottom: 2em;
+}
+
+.expDate {
+  right: 15px;
+  bottom: 2em;
+}
+
+.svg {
+  position: absolute;
+  top: -2vh;
+  left: 10px;
+  transform: translateY(-5vh)
+}
+
+.form {
+  position: absolute;
+  top: 50%;
+  width: 92%;
+  max-width: 500px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form label {
+  font-weight: bold;
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.form input {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+}
+
+.form input::placeholder {
+  color: #aaa;
+}
+
+.card-expiry {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.card-expiry input {
+  width: 50px;
+}
+
+.card-expiry label {
+  margin-left: 10px;
+}
+
+.error {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  display: block;
+}
+#Confirm {
+  display: block;
+  width: 100%;
+  background-color: hsl(278, 68%, 11%);
+  color: white;
+  border: none;
+  padding: 1em;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transform: translateY(5em)
+}
+
+/* Style for error messages */
+.error {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  display: block;
+}
